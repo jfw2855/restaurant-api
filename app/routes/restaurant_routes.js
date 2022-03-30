@@ -44,8 +44,14 @@ router.post('/restaurants', (req,res,next) => {
 
 // PATCH 
 
-// DESTROY
+// REMOVE -> DELETE/restaurants/:restaurantId
+router.delete('/restaurants/:id', (req,res,next) => {
+    //restId = restaurant's id
+    const restId = req.params.id
+    Restaurant.findByIdAndRemove(restId)
+    .then(()=>res.sendStatus(204))
+    .catch(next)
+})
 
-// DELETE 
 
 module.exports = router
