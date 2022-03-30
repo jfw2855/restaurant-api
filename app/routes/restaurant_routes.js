@@ -13,7 +13,13 @@ const router = express.Router()
 // SHOW
 
 // CREATE -> POST/restaurants
-
+router.post('/restaurants', (req,res,next) => {
+    Restaurant.create(req.body.restaurant)
+        .then(restaurant => {
+            res.status(201).json({restaurant: restaurant.toObject()})
+        })
+        .catch(next)
+})
 
 // UPDATE
 
