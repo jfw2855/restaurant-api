@@ -18,7 +18,18 @@ router.get('/restaurants', (req,res,next) => {
         .then(restaurants => res.status(200).json({restaurants: restaurants}))
 })
 
-// SHOW
+
+
+// SHOW -> GET/restaurants/:restaurantId
+router.get('/restaurants/:id', (req,res,next) => {
+    //restId = restaurant's id
+    const restId = req.params.id
+    Restaurant.findById(restId)
+    .then(restaurant => res.status(200).json({restaurant: restaurant.toObject()}))
+    .catch(next)
+})
+
+
 
 // CREATE -> POST/restaurants
 router.post('/restaurants', (req,res,next) => {
