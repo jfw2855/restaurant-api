@@ -9,6 +9,14 @@ const Restaurant = require('../models/restaurant')
 const router = express.Router()
 
 // INDEX -> GET/restaurants
+router.get('/restaurants', (req,res,next) => {
+
+    Restaurant.find()
+        .then(restaurants => {
+            return restaurants.map(restaurant => restaurant.toObject())
+        })
+        .then(restaurants => res.status(200).json({restaurants: restaurants}))
+})
 
 // SHOW
 
